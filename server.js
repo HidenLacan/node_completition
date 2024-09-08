@@ -1,21 +1,23 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const path = require("path");
+
 require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 const PORT = process.env.PORT || 5000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 app.get("",async(req,res)=> {
 
-  res.send("The API is ready to use");
-  
-})
+  res.sendFile(path.join(__dirname, "public",'index.html'));
+});
 
 app.post('/api/chat',async(req,res)=> {
     const userMessage = req.body.message;
