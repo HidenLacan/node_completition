@@ -11,6 +11,12 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+app.get("",async(req,res)=> {
+
+  res.send("The API is ready to use");
+  
+})
+
 app.post('/api/chat',async(req,res)=> {
     const userMessage = req.body.message;
     try{
@@ -34,6 +40,9 @@ app.post('/api/chat',async(req,res)=> {
 
     }
 });
+
+
+
 
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`);
